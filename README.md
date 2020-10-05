@@ -1044,6 +1044,10 @@ class AnimalImage extends PureComponent
 
 4. **~~ComponentWillUpdate~~ [LEGACY]**
 
+```js
+componentWillUpdate()
+```
+
 Evitar el uso de seState
 
 Se ejecutaría si el anterior método ShouldComponentUpdate es true y antes del render.
@@ -1067,6 +1071,10 @@ Un uso podría ser añadir animaciones para que se ejecuten justo al iniciar el 
 **_Normalmente, este método puede ser reemplazado por componentDidUpdate(). Si estabas leyendo el DOM en este método (por ejemplo para guardar una posición de desplazamiento), puedes mover esa lógica a getSnapshotBeforeUpdate()._** 
 
 5. **static getDerivedStateFromProps(props, state) [NUEVA ALTERNATIVA]**
+
+```js
+static getDerivedStateFromProps(props, state)
+```
 
 -  se invoca justo antes de llamar al método de render, tanto en la montura inicial como en las actualizaciones posteriores. 
 
@@ -1114,6 +1122,10 @@ Debe devolverse un valor instantáneo (o null).
 Ver ejemplo en el documentación de react relativa a [getSnapshotBeforeUpdate](https://es.reactjs.org/docs/react-component.html#static-getderivedstatefromprops)
 
 6. **ComponentDidUpdate [USAR ESTE MÉTODO PREFERENTEMENTE]**
+
+```js
+componentDidUpdate(prevProps, prevState, snapshot)
+```
 
 -  Se invoca inmediatamente después de que la actualización ocurra. Este método no es llamado para el renderizador inicial.
 
@@ -1226,7 +1238,7 @@ export default class ComponentDidCatchExample extends Component {
 }
 ```
 
-### RESUMEN
+### RESUMEN DE CICLOS DE VIDA
 
 Los ciclos de vida que más usaremos serán:
 
@@ -1247,9 +1259,9 @@ Los ciclos de vida que más usaremos serán:
 
 * **Componentes controlados vs Componentes no controlados**: 
 
-- Los no controlados son los que acceden directamente al DOM (los inputs normales de HTML), a los que accedemos con ref o con getElementBy...
+Los no controlados son los que acceden directamente al DOM (los inputs normales de HTML), a los que accedemos con ref o con getElementBy...
 
-- Los controlados son los que propone react, para aprovechar la reactividad, valga la redundancia, es decir la forma declarativa, que es mediante props y eventos. El input recibe una prop y un método callback y sólo se encarga de mandarle al padre (form) el valor de su input, pero es el padre el que lo almacena en un estado y lo trata.
+Los controlados son los que propone react, para aprovechar la reactividad, valga la redundancia, es decir la forma declarativa, que es mediante props y eventos. El input recibe una prop y un método callback y sólo se encarga de mandarle al padre (form) el valor de su input, pero es el padre el que lo almacena en un estado y lo trata.
 
 ```js
 // Componente hijo completamente controlado por el padre
@@ -1263,6 +1275,6 @@ function EmailInput(props) {
 
 * **Usar composición vs extender la clase**
 
-* **Usar funciones vs clases** A excepción de cuando tengamos que usar los cilos de vida: getSnapshotBeforeUpdate, componentDidCatch y getDerivedStateFromError, que aún están en proceso de crear los hooks, con lo que sí que tendríamos que usar las clases en estos casos, para usar esos métodos.
+* **Usar funciones vs clases** A excepción de cuando tengamos que usar los cilos de vida _getSnapshotBeforeUpdate, componentDidCatch_ y _getDerivedStateFromError_, que aún están en proceso de crear los hooks, con lo que sí que tendríamos que usar las clases en estos casos, para usar esos métodos.
 
 * **Patrón Contenedor-Contenido**. Dividir los tipos de componentes entre los que son Contenedor y los que son Contenido, también conocidos como listos y tontos, o lógicos y presentacionales
